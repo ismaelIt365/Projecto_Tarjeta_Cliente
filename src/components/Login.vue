@@ -61,14 +61,14 @@
                     <div v-else class="card-body">
                         <div class="row">
 
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-6">
                                 <img class="img-thumbnail" src="../assets/vegetal.jpg" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Producto 1</h5>
                                     <p class="card-text">1000 pts</p>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-6">
                                 <img class="img-thumbnail" src="../assets/mollete.jpg" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Producto 2</h5>
@@ -77,14 +77,14 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-6">
                                 <img class="img-thumbnail" src="../assets/nordico_iberico.jpg" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Producto 3</h5>
                                     <p class="card-text">500 pts</p>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6">
+                            <div class="col-6">
                                 <img class="img-thumbnail" src="../assets/serrano.jpg" alt="">
                                 <div class="card-body">
                                     <h5 class="card-title">Producto 4</h5>
