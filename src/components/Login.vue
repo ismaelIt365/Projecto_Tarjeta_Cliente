@@ -1,47 +1,44 @@
 <template>
   <div class="container">
     <!-- para poner en el centro -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-2">
       <div class="col-12 col-md-8 col-sm-12">
         <div class="card">
           <div class="row p-2">
             <!-- cambiar de div entre registro y ventajas con @click="variable"-->
             <div class="col-6">
               <button
-                @click="registro = true"
-                class="btn w-100"
                 :class="{
-                  colorActive: registro == true,
-                  colorInactive: registro == false,
+                  colorActive: changecolor == true,
+                  colorInactive: changecolor == false,
                 }"
-                type="button"
+                @click="changecolor = true"
+                class="btn w-100"
               >
                 Registro
               </button>
             </div>
             <div class="col-6">
-              <a href="#">
-                <button
-                  @click="registro = false"
-                  :class="{
-                    colorActive: registro == false,
-                    colorInactive: registro == true,
-                  }"
-                  class="btn w-100"
-                  type="button"
-                >
-                  Ventajas
-                </button>
-              </a>
+              <button
+                :class="{
+                  colorActive: changecolor == false,
+                  colorInactive: changecolor == true,
+                }"
+                @click="changecolor = false"
+                class="btn w-100"
+              >
+                Ventajas
+              </button>
             </div>
           </div>
           <img
-            v-if="registro"
+            v-if="changecolor"
             src="../assets/Logo1.png"
-            class="card-img-top img-fluid"
+            class="card-img-top img-fluid mx-auto"
             alt="..."
+            style="width: 15rem"
           />
-          <div v-if="registro" class="card-body">
+          <div v-if="changecolor" class="card-body">
             <div class="row g-3">
               <div class="col-6">
                 <label for="inputNombre" class="form-label">Nombre</label>
@@ -64,14 +61,14 @@
                 />
               </div>
               <div class="col-6">
-                <label for="inputTelefono" class="form-label">Telefono</label>
+                <label for="inputTelefono" class="form-label">Teléfono</label>
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon1">+34</span>
                   <input
                     v-model="telefono"
                     type="text"
                     class="form-control"
-                    placeholder="Telefono"
+                    placeholder="Teléfono"
                     aria-label="telefono"
                     aria-describedby="basic-addon1"
                   />
@@ -101,13 +98,13 @@
                 <label for="inputTarjeta" class="form-label">Tarjeta</label>
                 <input
                   v-model="tarjeta"
-                  type="email"
+                  type="text"
                   class="form-control"
                   id="inputTarjeta"
-                  placeholder="Tarjeta"
+                  placeholder="Tarjeta fidelización"
                 />
               </div>
-              <div class="col-12">
+              <div class="col-12 text-center">
                 <button @click="crearTarjeta()" class="btn btn-success">
                   Registrarse
                 </button>
@@ -174,7 +171,7 @@ export default {
   setup() {
     // Variables
     const error = ref(false);
-    const registro = ref(true);
+    const changecolor = ref(true);
     const nombre = ref("");
     const apellidos = ref("");
     const telefono = ref("");
@@ -342,7 +339,7 @@ export default {
 
     //Retornar variables y funciones
     return {
-      registro,
+      changecolor,
       crearTarjeta,
       nombre,
       apellidos,
@@ -359,13 +356,15 @@ export default {
 
 <style>
 .colorActive {
-  background-color: #ff9800;
-  color: black;
-  padding: 0.6rem;
+  background-color: #ff9800 !important;
+  color: black !important;
+  padding: 0.6rem !important; 
+  
 }
 
 .colorInactive {
-  background-color: #d7d9e7;
-  color: rgb(119, 119, 119);
+  background-color: #d7d9e7 !important;
+  color: rgb(119, 119, 119) !important;
+  padding: 0.6rem !important;
 }
 </style>
