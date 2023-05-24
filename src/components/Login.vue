@@ -95,13 +95,13 @@
                 />
               </div>
               <div class="col-md-6">
-                <label for="inputTarjeta" class="form-label">Tarjeta</label>
+                <label for="inputTarjeta" class="form-label">Tarjeta Fidelización (Opcional)</label>
                 <input
                   v-model="tarjeta"
                   type="text"
                   class="form-control"
                   id="inputTarjeta"
-                  placeholder="Tarjeta fidelización"
+                  placeholder="Nº"
                 />
               </div>
               <div class="col-12 text-center">
@@ -120,17 +120,17 @@
           <div v-else class="card-body">
             <div class="row">
               <div class="col-6">
-                <img class="img-thumbnail" src="../assets/vegetal.jpg" alt="" />
+                <img class="img-thumbnail" src="../assets/bandaDeFruta.png" alt="" />
                 <div class="card-body">
-                  <h5 class="card-title">Producto 1</h5>
-                  <p class="card-text">1000 pts</p>
+                  <h5 class="card-title">Banda de frutas</h5>
+                  <p class="card-text">13000 pts</p>
                 </div>
               </div>
               <div class="col-6">
-                <img class="img-thumbnail" src="../assets/mollete.jpg" alt="" />
+                <img class="img-thumbnail" src="../assets/padecoca.png" alt="" />
                 <div class="card-body">
-                  <h5 class="card-title">Producto 2</h5>
-                  <p class="card-text">900 pts</p>
+                  <h5 class="card-title">Pa de coca</h5>
+                  <p class="card-text">2500 pts</p>
                 </div>
               </div>
             </div>
@@ -138,19 +138,19 @@
               <div class="col-6">
                 <img
                   class="img-thumbnail"
-                  src="../assets/nordico_iberico.jpg"
+                  src="../assets/cafeconleche.png"
                   alt=""
                 />
                 <div class="card-body">
-                  <h5 class="card-title">Producto 3</h5>
-                  <p class="card-text">500 pts</p>
+                  <h5 class="card-title">Café con leche</h5>
+                  <p class="card-text">2335 pts</p>
                 </div>
               </div>
               <div class="col-6">
-                <img class="img-thumbnail" src="../assets/serrano.jpg" alt="" />
+                <img class="img-thumbnail" src="../assets/Joanets.jpg" alt="" />
                 <div class="card-body">
-                  <h5 class="card-title">Producto 4</h5>
-                  <p class="card-text">100 pts</p>
+                  <h5 class="card-title">Joanets</h5>
+                  <p class="card-text">1000 pts</p>
                 </div>
               </div>
             </div>
@@ -302,9 +302,9 @@ export default {
         enviarCorreo();
         //Crear una alert para mostrar que la tarjeta se ha creado correctamente y mostrarle el QR
         Swal.fire({
-          title: "<strong>Tarjeta Creada</strong>",
+          title: "<strong>Revisa tu Email</strong>",
           icon: "success",
-          html: '<img src="' + imagenQR.value + '" alt="">',
+          //html: '<img src="' + imagenQR.value + '" alt="">',
           showCloseButton: true,
           focusConfirm: false,
           confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK',
