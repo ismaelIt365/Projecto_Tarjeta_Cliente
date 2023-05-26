@@ -15,7 +15,7 @@
                 @click="changecolor = true"
                 class="btn w-100"
               >
-                Registro
+                Registre
               </button>
             </div>
             <div class="col-6">
@@ -27,65 +27,69 @@
                 @click="changecolor = false"
                 class="btn w-100"
               >
-                Ventajas
+                Avantatges
               </button>
             </div>
           </div>
           <img
             v-if="changecolor"
-            src="../assets/Logo1.png"
+            src="../assets/logo.png"
             class="card-img-top img-fluid mx-auto"
             alt="..."
             style="width: 15rem"
           />
+          <div  v-if="changecolor" class="div text text-center" >
+            <h2><img src="../assets/gorrito.png" alt="" width="25">Formar part del #Club365 </h2>
+            <h2>Té la seva recompensa<img src="../assets/gorrito.png" alt="" width="25"></h2>
+          </div>
           <div v-if="changecolor" class="card-body">
             <div class="row g-3">
               <div class="col-6">
-                <label for="inputNombre" class="form-label">Nombre</label>
+                <label for="inputNombre" class="form-label">Nom</label>
                 <input
                   v-model="nombre"
                   type="text"
                   class="form-control"
                   id="inputNombre"
-                  placeholder="Nombre"
+                  placeholder="Nom"
                 />
               </div>
               <div class="col-6">
-                <label for="inputApellidos" class="form-label">Apellidos</label>
+                <label for="inputApellidos" class="form-label">Cognoms</label>
                 <input
                   v-model="apellidos"
                   type="text"
                   class="form-control"
                   id="inputApellidos"
-                  placeholder="Apellidos"
+                  placeholder="Cognoms"
                 />
               </div>
               <div class="col-6">
-                <label for="inputTelefono" class="form-label">Teléfono</label>
+                <label for="inputTelefono" class="form-label">Telèfon</label>
                 <div class="input-group">
                   <span class="input-group-text" id="basic-addon1">+34</span>
                   <input
                     v-model="telefono"
                     type="text"
                     class="form-control"
-                    placeholder="Teléfono"
+                    placeholder="Telèfon"
                     aria-label="telefono"
                     aria-describedby="basic-addon1"
                   />
                 </div>
               </div>
               <div class="col-6">
-                <label for="inputCP" class="form-label">CP</label>
+                <label for="inputCP" class="form-label">Codi Postal</label>
                 <input
                   v-model="cp"
                   type="text"
                   class="form-control"
                   id="inputCP"
-                  placeholder="CP"
+                  placeholder="Codi Postal"
                 />
               </div>
               <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Email</label>
+                <label for="inputEmail" class="form-label">Correu</label>
                 <input
                   v-model="email"
                   type="email"
@@ -94,19 +98,9 @@
                   placeholder="Email"
                 />
               </div>
-              <div class="col-md-6">
-                <label for="inputTarjeta" class="form-label">Tarjeta Fidelización (Opcional)</label>
-                <input
-                  v-model="tarjeta"
-                  type="text"
-                  class="form-control"
-                  id="inputTarjeta"
-                  placeholder="Nº"
-                />
-              </div>
               <div class="col-12 text-center">
-                <button @click="crearTarjeta()" class="btn btn-success">
-                  Registrarse
+                <button @click="crearTarjeta()" class="btn" style="background-color: #FBCA8B;">
+                  Unir-me al club
                 </button>
               </div>
               <!-- <div class="col-12">
@@ -122,7 +116,7 @@
               <div class="col-6">
                 <img class="img-thumbnail" src="../assets/bandaDeFruta.png" alt="" />
                 <div class="card-body">
-                  <h5 class="card-title">Banda de frutas</h5>
+                  <h5 class="card-title">Banda de fruites</h5>
                   <p class="card-text">13000 pts</p>
                 </div>
               </div>
@@ -142,7 +136,7 @@
                   alt=""
                 />
                 <div class="card-body">
-                  <h5 class="card-title">Café con leche</h5>
+                  <h5 class="card-title">Cafè amb llet</h5>
                   <p class="card-text">2335 pts</p>
                 </div>
               </div>
@@ -178,7 +172,6 @@ export default {
     const cp = ref("");
     const email = ref("");
     const validEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    const tarjeta = ref("");
     const imagenQR = ref("");
 
     function crearTarjeta() {
@@ -262,18 +255,7 @@ export default {
           });
         }
       }
-      if (
-        (tarjeta.value != "" && tarjeta.value.length < 13) ||
-        tarjeta.value.length > 13 ||
-        isNaN(tarjeta.value)
-      ) {
-        error.value = true;
-        Swal.fire({
-          title: "Error",
-          text: "El formato de la tarjeta es incorrecto",
-          icon: "error",
-        });
-      }
+     
 
       // Controlar error
       if (!error.value) {
@@ -282,7 +264,6 @@ export default {
           telefono: telefono.value,
           codigoPostal: cp.value,
           correo: email.value,
-          tarjeta: tarjeta.value,
         };
         console.log(datos);
 
@@ -302,11 +283,13 @@ export default {
         enviarCorreo();
         //Crear una alert para mostrar que la tarjeta se ha creado correctamente y mostrarle el QR
         Swal.fire({
-          title: "<strong>Revisa tu Email</strong>",
+          title: "<strong>Revisa el teu correu</strong>",
           icon: "success",
+          html: '<strong>i trobaràs la teva recompensa</strong>',
           //html: '<img src="' + imagenQR.value + '" alt="">',
           showCloseButton: true,
           focusConfirm: false,
+          confirmButtonColor:'#FBCA9B',
           confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK',
           confirmButtonAriaLabel: "Thumbs up, great!",
         });
@@ -346,7 +329,6 @@ export default {
       telefono,
       cp,
       email,
-      tarjeta,
       imagenQR,
       enviarCorreo,
     };
