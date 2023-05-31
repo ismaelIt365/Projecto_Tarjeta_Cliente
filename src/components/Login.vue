@@ -38,90 +38,164 @@
             alt="..."
             style="width: 15rem"
           />
-          <div  v-if="changecolor" class="div text text-center" >
-            <h2><img src="../assets/gorrito.png" alt="" width="25">Formar part del #Club365 </h2>
-            <h2>Té la seva recompensa<img src="../assets/gorrito.png" alt="" width="25"></h2>
+          <div v-if="changecolor" class="div text-center">
+            <h1>Aconsegueix el teu</h1>
+            <h1 style="color: orange">CAFÈ O PA GRATIS</h1>
+            <h1>només posant el teu mail</h1>
           </div>
-          <div v-if="changecolor" class="card-body">
-            <div class="row g-3">
-              <div class="col-6">
-                <label for="inputNombre" class="form-label">Nom</label>
-                <input
-                  v-model="nombre"
-                  type="text"
-                  class="form-control"
-                  id="inputNombre"
-                  placeholder="Nom"
-                />
-              </div>
-              <div class="col-6">
-                <label for="inputApellidos" class="form-label">Cognoms</label>
-                <input
-                  v-model="apellidos"
-                  type="text"
-                  class="form-control"
-                  id="inputApellidos"
-                  placeholder="Cognoms"
-                />
-              </div>
-              <div class="col-6">
-                <label for="inputTelefono" class="form-label">Telèfon</label>
-                <div class="input-group">
-                  <span class="input-group-text" id="basic-addon1">+34</span>
-                  <input
-                    v-model="telefono"
-                    type="text"
-                    class="form-control"
-                    placeholder="Telèfon"
-                    aria-label="telefono"
-                    aria-describedby="basic-addon1"
-                  />
-                </div>
-              </div>
-              <div class="col-6">
-                <label for="inputCP" class="form-label">Codi Postal</label>
-                <input
-                  v-model="cp"
-                  type="text"
-                  class="form-control"
-                  id="inputCP"
-                  placeholder="Codi Postal"
-                />
-              </div>
-              <div class="col-md-6">
-                <label for="inputEmail" class="form-label">Correu</label>
-                <input
-                  v-model="email"
-                  type="email"
-                  class="form-control"
-                  id="inputEmail"
-                  placeholder="Email"
-                />
-              </div>
-              <div class="col-12 text-center">
-                <button @click="crearTarjeta()" class="btn" style="background-color: #FBCA8B;">
-                  Unir-me al club
+          <template v-if="!mostrarForm">
+            <div v-if="changecolor" class="col-md-12">
+              <label for="inputEmail" class="form-label">Correu</label>
+              <input
+                v-model="email"
+                type="email"
+                class="form-control"
+                id="inputEmail"
+                placeholder="e-mail"
+              />
+              <div class="text-center">
+                <button
+                  @click="crearTarjeta()"
+                  class="btn w-50 mt-2"
+                  style="background-color: #fbca8b"
+                >
+                  Enviar email
                 </button>
               </div>
-              <!-- <div class="col-12">
+            </div>
+          </template>
+
+          <div v-if="changecolor" class="div mt-2">
+            <p>
+              <img src="../assets/gorrito.png" alt="" width="20" />Formar part
+              del #Club365 té la seva recompensa<img
+                src="../assets/gorrito.png"
+                alt=""
+                width="20"
+              />
+            </p>
+          </div>
+
+          <template v-if="mostrarForm">
+            <div v-if="changecolor" class="card-body">
+              <div class="row g-3">
+                <div class="col-6">
+                  <label for="inputNombre" class="form-label">Nom</label>
+                  <input
+                    v-model="nombre"
+                    type="text"
+                    class="form-control"
+                    id="inputNombre"
+                    placeholder="Nom"
+                  />
+                </div>
+                <div class="col-6">
+                  <label for="inputApellidos" class="form-label">Cognoms</label>
+                  <input
+                    v-model="apellidos"
+                    type="text"
+                    class="form-control"
+                    id="inputApellidos"
+                    placeholder="Cognoms"
+                  />
+                </div>
+                <div class="col-6">
+                  <label for="inputTelefono" class="form-label">Telèfon</label>
+                  <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">+34</span>
+                    <input
+                      v-model="telefono"
+                      type="text"
+                      class="form-control"
+                      placeholder="Telèfon"
+                      aria-label="telefono"
+                      aria-describedby="basic-addon1"
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="inputCP" class="form-label">Codi Postal</label>
+                  <input
+                    v-model="cp"
+                    type="text"
+                    class="form-control"
+                    id="inputCP"
+                    placeholder="Codi Postal"
+                  />
+                </div>
+                <div class="col-12">
+                  <label for="inputEmail" class="form-label">Correu</label>
+                  <input
+                    v-model="email"
+                    type="text"
+                    class="form-control"
+                    id="inputEmail"
+                    placeholder="e-mail"
+                  />
+                </div>
+                <div class="col-12 text-center">
+                  <button
+                    @click="crearTarjeta()"
+                    class="btn"
+                    style="background-color: #fbca8b"
+                  >
+                    Unir-me al club
+                  </button>
+                </div>
+                <!-- <div class="col-12">
                 <button @click="enviarCorreo()" class="btn btn-success">
                   prueba
                 </button>
               </div> -->
+              </div>
+            </div>
+          </template>
+          <div v-if="changecolor">
+            <div class="form-check">
+              <input
+                v-model="mostrarForm"
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Fes-te membre del club
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                v-model="newsletter"
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Subscriu-te a la newsletter
+              </label>
             </div>
           </div>
           <!-- ventajas -->
-          <div v-else class="card-body">
+          <div v-if="changecolor == false" class="card-body">
             <div class="row">
               <div class="col-6">
-                <img class="img-thumbnail" src="../assets/bandaDeFruta.png" alt="" />
+                <img
+                  class="img-thumbnail"
+                  src="../assets/bandaDeFruta.png"
+                  alt=""
+                />
                 <div class="card-body">
                   <h5 class="card-title">Banda de fruites</h5>
                   <p class="card-text">13000 pts</p>
                 </div>
               </div>
               <div class="col-6">
-                <img class="img-thumbnail" src="../assets/padecoca.png" alt="" />
+                <img
+                  class="img-thumbnail"
+                  src="../assets/padecoca.png"
+                  alt=""
+                />
                 <div class="card-body">
                   <h5 class="card-title">Pa de coca</h5>
                   <p class="card-text">2500 pts</p>
@@ -157,7 +231,7 @@
 <script>
 import { ref } from "vue";
 import Swal from "sweetalert2";
-import QR from "qrious";
+// import QR from "qrious";
 //import axios from "axios";
 //import {nodemailer} from "nodemailer";
 export default {
@@ -173,69 +247,11 @@ export default {
     const email = ref("");
     const validEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const imagenQR = ref("");
+    const mostrarForm = ref(false);
+    const newsletter = ref(false);
 
     function crearTarjeta() {
       error.value = false;
-      // comprobar si el nombre esta vacio
-      if (nombre.value == "") {
-        error.value = true;
-        Swal.fire({
-          title: "Error",
-          text: "Debes introducir un nombre",
-          icon: "error",
-        });
-      }
-      // comprobar si los apellidos estan vacios
-      if (apellidos.value == "") {
-        error.value = true;
-        Swal.fire({
-          title: "Error",
-          text: "Debes introducir tus apellidos",
-          icon: "error",
-        });
-      }
-      // comprobar si el telefono esta vacio
-      if (telefono.value == "") {
-        error.value = true;
-        Swal.fire({
-          title: "Error",
-          text: "Debes introducir un telefono",
-          icon: "error",
-        });
-      } else {
-        // comprobar si el telefono tiene un tamaño de 9 digitos y solo introducen numeros no texto(isNaN)
-        if (
-          telefono.value.length < 9 ||
-          telefono.value.length > 9 ||
-          isNaN(telefono.value)
-        ) {
-          error.value = true;
-          Swal.fire({
-            title: "Error",
-            text: "Debes introducir un telefono de 9 digitos",
-            icon: "error",
-          });
-        }
-      }
-      // comprobar si el codigo postal esta vacio
-      if (cp.value == "") {
-        error.value = true;
-        Swal.fire({
-          title: "Error",
-          text: "Debes introducir un codigo postal",
-          icon: "error",
-        });
-      } else {
-        //comprobar que el tamaño del codigo postal sea de 5 digitos y solo introduzca numeros no texto(isNaN)
-        if (cp.value.length < 5 || cp.value.length > 5 || isNaN(cp.value)) {
-          error.value = true;
-          Swal.fire({
-            title: "Error",
-            text: "Debes introducir un codigo postal de 5 digitos",
-            icon: "error",
-          });
-        }
-      }
       // comprobar si el email esta vacio
       if (email.value == "") {
         error.value = true;
@@ -255,8 +271,68 @@ export default {
           });
         }
       }
-     
-
+      if (mostrarForm.value) {
+        // comprobar si el nombre esta vacio
+        if (nombre.value == "") {
+          error.value = true;
+          Swal.fire({
+            title: "Error",
+            text: "Debes introducir un nombre",
+            icon: "error",
+          });
+        }
+        // comprobar si los apellidos estan vacios
+        if (apellidos.value == "") {
+          error.value = true;
+          Swal.fire({
+            title: "Error",
+            text: "Debes introducir tus apellidos",
+            icon: "error",
+          });
+        }
+        // comprobar si el telefono esta vacio
+        if (telefono.value == "") {
+          error.value = true;
+          Swal.fire({
+            title: "Error",
+            text: "Debes introducir un telefono",
+            icon: "error",
+          });
+        } else {
+          // comprobar si el telefono tiene un tamaño de 9 digitos y solo introducen numeros no texto(isNaN)
+          if (
+            telefono.value.length < 9 ||
+            telefono.value.length > 9 ||
+            isNaN(telefono.value)
+          ) {
+            error.value = true;
+            Swal.fire({
+              title: "Error",
+              text: "Debes introducir un telefono de 9 digitos",
+              icon: "error",
+            });
+          }
+        }
+        // comprobar si el codigo postal esta vacio
+        if (cp.value == "") {
+          error.value = true;
+          Swal.fire({
+            title: "Error",
+            text: "Debes introducir un codigo postal",
+            icon: "error",
+          });
+        } else {
+          //comprobar que el tamaño del codigo postal sea de 5 digitos y solo introduzca numeros no texto(isNaN)
+          if (cp.value.length < 5 || cp.value.length > 5 || isNaN(cp.value)) {
+            error.value = true;
+            Swal.fire({
+              title: "Error",
+              text: "Debes introducir un codigo postal de 5 digitos",
+              icon: "error",
+            });
+          }
+        }
+      }
       // Controlar error
       if (!error.value) {
         const datos = {
@@ -264,32 +340,21 @@ export default {
           telefono: telefono.value,
           codigoPostal: cp.value,
           correo: email.value,
+          newsletter: newsletter.value,
         };
         console.log(datos);
 
-        //Crear QR para coger los datos del telefono
-        const qr = new QR({});
-
-        qr.backgroundAlpha = 0.8;
-        qr.foregroundAlpha = 0.8;
-        qr.level = "H";
-        qr.padding = 20;
-        qr.size = 300;
-        qr.value = datos.telefono;
-        // Generar el dataURL del código QR
-        imagenQR.value = qr.toDataURL();
-
         // Llama a enviarCorreo después de crear la tarjeta QR
-        enviarCorreo();
+        // enviarCorreo();
         //Crear una alert para mostrar que la tarjeta se ha creado correctamente y mostrarle el QR
         Swal.fire({
           title: "<strong>Revisa el teu correu</strong>",
           icon: "success",
-          html: '<strong>i trobaràs la teva recompensa</strong>',
+          html: "<strong>i trobaràs la teva recompensa</strong>",
           //html: '<img src="' + imagenQR.value + '" alt="">',
           showCloseButton: true,
           focusConfirm: false,
-          confirmButtonColor:'#FBCA9B',
+          confirmButtonColor: "#FBCA9B",
           confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK',
           confirmButtonAriaLabel: "Thumbs up, great!",
         });
@@ -297,27 +362,26 @@ export default {
     }
     //Enviar correo electronico
     async function enviarCorreo() {
-      let correoDetalles = {
-        to: "ismael@solucionesit365.com",
-        subject: "Nueva tarjeta creada",
-        text: `Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.`,
-        html: `<p>Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.</p><br><button style="background-color: black; color: white; border: 2px solid black; padding: 10px 20px; border-radius: 4px;">+ Añadir a Wallet</button>
-        `,
-      };
-
-      // Realizar una solicitud POST a tu servidor Node.js
-      try {
-        let response = await fetch("http://localhost:3000/sendmail", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(correoDetalles),
-        });
-        console.log(response.data);
-      } catch (error) {
-        console.error(error);
-      }
+      // let correoDetalles = {
+      //   to: email.value,
+      //   subject: "Premi obtingut",
+      //   text: `Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.`,
+      //   html: `<p>Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.</p><br><button style="background-color: black; color: white; border: 2px solid black; padding: 10px 20px; border-radius: 4px;">+ Añadir a Wallet</button>
+      //   `,
+      // };
+      // // Realizar una solicitud POST a tu servidor Node.js
+      // try {
+      //   let response = await fetch("http://localhost:3000/sendmail", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(correoDetalles),
+      //   });
+      //   console.log(response.data);
+      // } catch (error) {
+      //   console.error(error);
+      // }
     }
 
     //Retornar variables y funciones
@@ -331,6 +395,8 @@ export default {
       email,
       imagenQR,
       enviarCorreo,
+      mostrarForm,
+      newsletter,
     };
   },
 };
@@ -340,8 +406,7 @@ export default {
 .colorActive {
   background-color: #ff9800 !important;
   color: black !important;
-  padding: 0.6rem !important; 
-  
+  padding: 0.6rem !important;
 }
 
 .colorInactive {
