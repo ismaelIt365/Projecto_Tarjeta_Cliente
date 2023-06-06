@@ -233,7 +233,7 @@ import { ref } from "vue";
 import Swal from "sweetalert2";
 
 // import QR from "qrious";
- import axios from "axios";
+import axios from "axios";
 //import {nodemailer} from "nodemailer";
 export default {
   name: "loginComponent",
@@ -365,15 +365,16 @@ export default {
     async function enviarCorreo() {
       // Realizar una solicitud POST a tu servidor Node.js
       try {
-         const response = await axios.post(
-           "https://365equipo/clientes/clientsForm",
+        const response = await axios.post(
+          "http://localhost:3000/clientes/clientsForm",
           {
             nuevoCliente: true,
             newsletter: true,
-            email: "ismael@solucionesit365.com",
-            nombre: "Ismael",
-            apellidos: "Maridueña",
-            telefono: "6580806580",
+            email: "m.cortez@solucionesit365.com",
+            nombre: "Miguel",
+            apellidos: "Cortez",
+            telefono: "698745698",
+            codigoPostal: "08213",
           }
         );
         console.log(response);
