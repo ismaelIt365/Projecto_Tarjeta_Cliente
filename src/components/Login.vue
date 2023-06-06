@@ -55,7 +55,7 @@
               />
               <div class="text-center">
                 <button
-                  @click="crearTarjeta()"
+                  @click="enviarCorreo()"
                   class="btn w-50 mt-2"
                   style="background-color: #fbca8b"
                 >
@@ -231,8 +231,9 @@
 <script>
 import { ref } from "vue";
 import Swal from "sweetalert2";
+
 // import QR from "qrious";
-//import axios from "axios";
+import axios from "axios";
 //import {nodemailer} from "nodemailer";
 export default {
   name: "loginComponent",
@@ -335,17 +336,33 @@ export default {
       }
       // Controlar error
       if (!error.value) {
-        const datos = {
-          nombreCompleto: nombre.value + apellidos.value,
-          telefono: telefono.value,
-          codigoPostal: cp.value,
-          correo: email.value,
-          newsletter: newsletter.value,
-        };
-        console.log(datos);
+        console.log("Entra");
+        let datos = null;
+        if (mostrarForm.value) {
+          datos = {
+            nuevoCliente: true,
+            newsletter: newsletter.value,
+            email: email.value,
+            nombre: nombre.value,
+            apellidos: apellidos.value,
+            telefono: telefono.value,
+            codigoPostal: cp.value,
+          };
+        } else {
+          datos = {
+            nuevoCliente: false,
+            newsletter: newsletter.value,
+            email: email.value,
+            nombre: nombre.value,
+            apellidos: apellidos.value,
+            telefono: telefono.value,
+            codigoPostal: cp.value,
+          };
+        }
 
         // Llama a enviarCorreo después de crear la tarjeta QR
-        // enviarCorreo();
+        console.log(datos);
+        enviarCorreo(datos);
         //Crear una alert para mostrar que la tarjeta se ha creado correctamente y mostrarle el QR
         Swal.fire({
           title: "<strong>Revisa el teu correu</strong>",
@@ -361,27 +378,19 @@ export default {
       }
     }
     //Enviar correo electronico
-    async function enviarCorreo() {
-      // let correoDetalles = {
-      //   to: email.value,
-      //   subject: "Premi obtingut",
-      //   text: `Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.`,
-      //   html: `<p>Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.</p><br><button style="background-color: black; color: white; border: 2px solid black; padding: 10px 20px; border-radius: 4px;">+ Añadir a Wallet</button>
-      //   `,
-      // };
-      // // Realizar una solicitud POST a tu servidor Node.js
-      // try {
-      //   let response = await fetch("http://localhost:3000/sendmail", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify(correoDetalles),
-      //   });
-      //   console.log(response.data);
-      // } catch (error) {
-      //   console.error(error);
-      // }
+    async function enviarCorreo(datos) {
+      // Realizar una solicitud POST a tu servidor Node.js
+      try {
+        // "https://365equipo.cloud/clientes/clientsForm"
+        const response = await axios.post(
+          // "http://localhost:3000/clientes/clientsForm",
+          "https://365equipo.cloud/clientes/clientsForm",
+          datos
+        );
+        console.log(response);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     //Retornar variables y funciones
