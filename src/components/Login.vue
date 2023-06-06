@@ -378,19 +378,27 @@ export default {
       }
     }
     //Enviar correo electronico
-    async function enviarCorreo(datos) {
-      // Realizar una solicitud POST a tu servidor Node.js
-      try {
-        // "https://365equipo.cloud/clientes/clientsForm"
-        const response = await axios.post(
-          // "http://localhost:3000/clientes/clientsForm",
-          "https://365equipo.cloud/clientes/clientsForm",
-          datos
-        );
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
+    async function enviarCorreo() {
+      // let correoDetalles = {
+      //   to: email.value,
+      //   subject: "Premi obtingut",
+      //   text: `Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.`,
+      //   html: `<p>Una nueva tarjeta ha sido creada para el usuario ${nombre.value} ${apellidos.value}.</p><br><button style="background-color: black; color: white; border: 2px solid black; padding: 10px 20px; border-radius: 4px;">+ Añadir a Wallet</button>
+      //   `,
+      // };
+      // // Realizar una solicitud POST a tu servidor Node.js
+      // try {
+      //   let response = await fetch("http://localhost:3000/sendmail", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify(correoDetalles),
+      //   });
+      //   console.log(response.data);
+      // } catch (error) {
+      //   console.error(error);
+      // }
     }
 
     //Retornar variables y funciones
