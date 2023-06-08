@@ -7,6 +7,12 @@ const routes = [
   
     component: () => import('../components/Login.vue')
   },
+  {
+    path: '/politicas',
+    name: 'politicas',
+  
+    component: () => import('../components/Politicas.vue')
+  },
   
   
 ]

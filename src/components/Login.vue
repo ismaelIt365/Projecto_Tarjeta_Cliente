@@ -39,13 +39,15 @@
             style="width: 15rem"
           />
           <div v-if="changecolor" class="div text-center">
-            <h1>Aconsegueix el teu</h1>
-            <h1 style="color: orange">CAFÈ O PA GRATIS</h1>
-            <h1>només posant el teu mail</h1>
+            <h1>Et regalem un</h1>
+            <h1 style="color: orange">CAFÈ O UNA BARRA DE PA</h1>
+            <h1>només escrivint la teva adreça electrònica</h1>
           </div>
           <template v-if="!mostrarForm">
-            <div v-if="changecolor" class="col-md-12">
-              <label for="inputEmail" class="form-label">Correu</label>
+            <div v-if="changecolor" class="card-body col-md-12">
+              <label for="inputEmail" class="form-label"
+                >Correu electrònic</label
+              >
               <input
                 v-model="email"
                 type="email"
@@ -68,7 +70,7 @@
           <div v-if="changecolor" class="div mt-2">
             <p>
               <img src="../assets/gorrito.png" alt="" width="20" />Formar part
-              del #Club365 té la seva recompensa<img
+              del #Club365 té molts avantatges<img
                 src="../assets/gorrito.png"
                 alt=""
                 width="20"
@@ -124,7 +126,9 @@
                   />
                 </div>
                 <div class="col-12">
-                  <label for="inputEmail" class="form-label">Correu</label>
+                  <label for="inputEmail" class="form-label"
+                    >Correu electrònic</label
+                  >
                   <input
                     v-model="email"
                     type="text"
@@ -142,11 +146,6 @@
                     Unir-me al club
                   </button>
                 </div>
-                <!-- <div class="col-12">
-                <button @click="enviarCorreo()" class="btn btn-success">
-                  prueba
-                </button>
-              </div> -->
               </div>
             </div>
           </template>
@@ -175,7 +174,16 @@
                 Subscriu-te a la newsletter
               </label>
             </div>
+            <p class="text-center mt-4 text-muted">
+              En fer ús d'aquesta app acceptes les nostres
+              <router-link to="/Politicas">
+                <span class="fw-bold" style="color: #03a55a"
+                  >polítiques de privacitat</span
+                >
+              </router-link>
+            </p>
           </div>
+
           <!-- ventajas -->
           <div v-if="changecolor == false" class="card-body">
             <div class="row">
@@ -231,7 +239,6 @@
 <script>
 import { ref } from "vue";
 import Swal from "sweetalert2";
-
 // import QR from "qrious";
 import axios from "axios";
 //import {nodemailer} from "nodemailer";
@@ -252,33 +259,13 @@ export default {
     const newsletter = ref(false);
 
     function crearTarjeta() {
-      error.value = false;
-      // comprobar si el email esta vacio
-      if (email.value == "") {
-        error.value = true;
-        Swal.fire({
-          title: "Error",
-          text: "Debes introducir un email",
-          icon: "error",
-        });
-      } else {
-        // comprobar si el email es valido
-        if (!validEmail.test(email.value)) {
-          error.value = true;
-          Swal.fire({
-            title: "Error",
-            text: "El formato del email es incorrecto",
-            icon: "error",
-          });
-        }
-      }
       if (mostrarForm.value) {
         // comprobar si el nombre esta vacio
         if (nombre.value == "") {
           error.value = true;
           Swal.fire({
             title: "Error",
-            text: "Debes introducir un nombre",
+            text: "Has d'introduir el teu nom",
             icon: "error",
           });
         }
@@ -287,7 +274,7 @@ export default {
           error.value = true;
           Swal.fire({
             title: "Error",
-            text: "Debes introducir tus apellidos",
+            text: "Has d'introduir els teus cognoms",
             icon: "error",
           });
         }
@@ -296,7 +283,7 @@ export default {
           error.value = true;
           Swal.fire({
             title: "Error",
-            text: "Debes introducir un telefono",
+            text: "Has d'introduir un telèfon",
             icon: "error",
           });
         } else {
@@ -309,7 +296,7 @@ export default {
             error.value = true;
             Swal.fire({
               title: "Error",
-              text: "Debes introducir un telefono de 9 digitos",
+              text: "Has d'introduir un telèfon de 9 digits",
               icon: "error",
             });
           }
@@ -319,7 +306,7 @@ export default {
           error.value = true;
           Swal.fire({
             title: "Error",
-            text: "Debes introducir un codigo postal",
+            text: "Has d'introduir un codi postal",
             icon: "error",
           });
         } else {
@@ -328,41 +315,35 @@ export default {
             error.value = true;
             Swal.fire({
               title: "Error",
-              text: "Debes introducir un codigo postal de 5 digitos",
+              text: "Has d'introduir un codi postal de 5 digits",
+              icon: "error",
+            });
+          }
+        }
+        // comprobar si el email esta vacio
+        if (email.value == "") {
+          error.value = true;
+          Swal.fire({
+            title: "Error",
+            text: "Has d'introduir un email",
+            icon: "error",
+          });
+        } else {
+          // comprobar si el email es valido
+          if (!validEmail.test(email.value)) {
+            error.value = true;
+            Swal.fire({
+              title: "Error",
+              text: "El format de correu electrònic és incorrecte",
               icon: "error",
             });
           }
         }
       }
+      // Llama a enviarCorreo después de crear la tarjeta QR
+      enviarCorreo();
       // Controlar error
       if (!error.value) {
-        console.log("Entra");
-        let datos = null;
-        if (mostrarForm.value) {
-          datos = {
-            nuevoCliente: true,
-            newsletter: newsletter.value,
-            email: email.value,
-            nombre: nombre.value,
-            apellidos: apellidos.value,
-            telefono: telefono.value,
-            codigoPostal: cp.value,
-          };
-        } else {
-          datos = {
-            nuevoCliente: false,
-            newsletter: newsletter.value,
-            email: email.value,
-            nombre: nombre.value,
-            apellidos: apellidos.value,
-            telefono: telefono.value,
-            codigoPostal: cp.value,
-          };
-        }
-
-        // Llama a enviarCorreo después de crear la tarjeta QR
-        console.log(datos);
-        enviarCorreo(datos);
         //Crear una alert para mostrar que la tarjeta se ha creado correctamente y mostrarle el QR
         Swal.fire({
           title: "<strong>Revisa el teu correu</strong>",
@@ -377,19 +358,85 @@ export default {
         });
       }
     }
+    function vaciarForm() {
+      email.value = "";
+      nombre.value = "";
+      apellidos.value = "";
+      cp.value = "";
+      telefono.value = "";
+    }
     //Enviar correo electronico
-    async function enviarCorreo(datos) {
-      // Realizar una solicitud POST a tu servidor Node.js
+    async function enviarCorreo() {
+      // comprobar si el email esta vacio
+      if (email.value == "") {
+        error.value = true;
+        Swal.fire({
+          title: "Error",
+          text: "Has d'introduir un email",
+          icon: "error",
+        });
+        return;
+      } else {
+        // comprobar si el email es valido
+        if (!validEmail.test(email.value)) {
+          error.value = true;
+          Swal.fire({
+            title: "Error",
+            text: "El format de correu electrònic és incorrecte",
+            icon: "error",
+          });
+          return;
+        }
+      }
+      let datos = null;
+      if (mostrarForm.value) {
+        datos = {
+          nuevoCliente: true,
+          newsletter: newsletter.value,
+          email: email.value,
+          nombre: nombre.value,
+          apellidos: apellidos.value,
+          telefono: telefono.value,
+          codigoPostal: cp.value,
+        };
+      } else {
+        datos = {
+          nuevoCliente: false,
+          newsletter: newsletter.value,
+          email: email.value,
+          nombre: nombre.value,
+          apellidos: apellidos.value,
+          telefono: telefono.value,
+          codigoPostal: cp.value,
+        };
+      }
+
+      console.log(mostrarForm.value);
+      console.log(datos);
       try {
-        // "https://365equipo.cloud/clientes/clientsForm"
         const response = await axios.post(
-
-          // "http://localhost:3000/clientes/clientsForm",
-          "https://365equipo.cloud/clientes/clientsForm",
-
+          "http://localhost:3000/clientes/clientsForm",
+          //"https://365equipo.cloud/clientes/clientsForm",
           datos
         );
         console.log(response);
+        if (response.data.ok) {
+          console.log("entra");
+          vaciarForm();
+
+          //Crear una alert para mostrar que el email se ha enviado correctamente
+          Swal.fire({
+            title: "<strong>Revisa el teu correu</strong>",
+            icon: "success",
+            html: "<strong>i trobaràs la teva recompensa</strong>",
+            //html: '<img src="' + imagenQR.value + '" alt="">',
+            showCloseButton: true,
+            focusConfirm: false,
+            confirmButtonColor: "#FBCA9B",
+            confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK',
+            confirmButtonAriaLabel: "Thumbs up, great!",
+          });
+        }
       } catch (error) {
         console.error(error);
       }
@@ -406,6 +453,7 @@ export default {
       email,
       imagenQR,
       enviarCorreo,
+      vaciarForm,
       mostrarForm,
       newsletter,
     };
