@@ -415,8 +415,8 @@ export default {
       console.log(datos);
       try {
         const response = await axios.post(
-          "http://localhost:3000/clientes/clientsForm",
-          //"https://365equipo.cloud/clientes/clientsForm",
+          //"http://localhost:3000/clientes/clientsForm",
+          "https://365equipo.cloud/clientes/clientsForm",
           datos
         );
         console.log(response);
