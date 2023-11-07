@@ -39,45 +39,95 @@
             style="width: 15rem"
           />
           <div v-if="changecolor" class="div text-center">
-            <h1>Et regalem un</h1>
-            <h1 style="color: orange">CAFÈ O UNA BARRA DE PA</h1>
-            <h1>només escrivint la teva adreça electrònica</h1>
+            <div style="position: relative; text-align: center">
+              <!-- Imagen SVG como fondo -->
+              <img
+                src="../assets/Recurso7.svg"
+                alt="Recurso 7"
+                style="width: 90%; height: auto"
+              />
+
+              <!-- Texto posicionado sobre la imagen -->
+              <div class="texto-sobre-imagen">
+                <h1>Et regalem un</h1>
+                <h2>CAFÈ O UNA BARRA DE PA</h2>
+                <h5>Inscriu-te amb el teu mail per a aconseguir-lo</h5>
+              </div>
+            </div>
           </div>
           <template v-if="!mostrarForm">
-            <div v-if="changecolor" class="card-body col-md-12">
-              <label for="inputEmail" class="form-label"
-                >Correu electrònic</label
-              >
-              <input
-                v-model="email"
-                type="email"
-                class="form-control"
-                id="inputEmail"
-                placeholder="e-mail"
-              />
-              <div class="text-center">
-                <button
-                  @click="enviarCorreo()"
-                  class="btn w-50 mt-2"
-                  style="background-color: #fbca8b"
-                >
-                  Enviar email
+            <div v-if="changecolor" class="card-body row ms-2 g-2">
+              <div class="col-12 col-md-8">
+                <div class="input-group mb-3">
+                  <span
+                    class="input-group-text border-0 texto"
+                    style="background-color: white"
+                    id="basic-addon1"
+                    >Correu electrònic:</span
+                  >
+                  <input
+                    v-model="email"
+                    type="email"
+                    class="form-control"
+                    id="inputEmail"
+                    placeholder="e-mail"
+                  />
+                </div>
+              </div>
+              <div class="col-12 col-md-4">
+                <button @click="enviarCorreo()" class="btn w-100">
+                  <img
+                    src="../assets/Recurso8.svg"
+                    alt="Recurso 7"
+                    style="width: 90%; height: auto"
+                  />
                 </button>
               </div>
             </div>
           </template>
-
-          <div v-if="changecolor" class="div mt-2">
-            <p>
-              <img src="../assets/gorrito.png" alt="" width="20" />Formar part
-              del #Club365 té molts avantatges<img
-                src="../assets/gorrito.png"
-                alt=""
-                width="20"
-              />
-            </p>
+          <div v-if="changecolor" class="mt-1 text-center">
+            <h5 class="texto">
+              𝓕𝓸𝓻𝓶𝓪𝓻 𝓹𝓪𝓻𝓽 𝓭𝓮𝓵
+              <span style="color: #e86d5a; font-weight: bold">#Club 365 </span>
+              𝓽é 𝓶𝓸𝓵𝓽𝓼 𝓪𝓿𝓪𝓷𝓽𝓪𝓽𝓰𝓮𝓼
+            </h5>
           </div>
 
+          <div
+            v-if="changecolor"
+            class="d-flex flex-wrap justify-content-center p-2 mb-2"
+          >
+            <div class="form-check me-2 me-md-4 mb-2 mb-md-0">
+              <input
+                v-model="mostrarForm"
+                class="form-check-input"
+                type="checkbox"
+                id="flexCheckDefault"
+              />
+              <label class="form-check-label texto" for="flexCheckDefault">
+                Fes-te membre del club
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                v-model="newsletter"
+                class="form-check-input"
+                type="checkbox"
+                id="flexCheckNewsletter"
+              />
+              <label class="form-check-label texto" for="flexCheckNewsletter">
+                Subscriu-te a la newsletter
+              </label>
+            </div>
+            <!-- <p class="text-center mt-4 text-muted">
+              En fer ús d'aquesta app acceptes les nostres
+              <router-link to="/Politicas">
+                <span class="fw-bold" style="color: #03a55a"
+                  >polítiques de privacitat</span
+                >
+              </router-link>
+            </p> -->
+          </div>
           <template v-if="mostrarForm">
             <div v-if="changecolor" class="card-body">
               <div class="row g-3">
@@ -149,40 +199,6 @@
               </div>
             </div>
           </template>
-          <div v-if="changecolor">
-            <div class="form-check">
-              <input
-                v-model="mostrarForm"
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Fes-te membre del club
-              </label>
-            </div>
-            <div class="form-check">
-              <input
-                v-model="newsletter"
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="flexCheckDefault"
-              />
-              <label class="form-check-label" for="flexCheckDefault">
-                Subscriu-te a la newsletter
-              </label>
-            </div>
-            <p class="text-center mt-4 text-muted">
-              En fer ús d'aquesta app acceptes les nostres
-              <router-link to="/Politicas">
-                <span class="fw-bold" style="color: #03a55a"
-                  >polítiques de privacitat</span
-                >
-              </router-link>
-            </p>
-          </div>
 
           <!-- ventajas -->
           <div v-if="changecolor == false" class="card-body">
@@ -472,5 +488,52 @@ export default {
   background-color: #d7d9e7 !important;
   color: rgb(119, 119, 119) !important;
   padding: 0.6rem !important;
+}
+/* Estilos por defecto */
+.texto-sobre-imagen {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.texto-sobre-imagen h1 {
+  color: #e86d5a;
+  margin: 0;
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.texto-sobre-imagen h2 {
+  color: #e86d5a;
+  margin: 0;
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.texto-sobre-imagen h5 {
+  margin: 0;
+  font-size: 1.07em;
+  font-weight: bold;
+}
+
+/* Media queries para ajustar los estilos en dispositivos más pequeños */
+@media (max-width: 810px) {
+  .texto-sobre-imagen h1 {
+    font-size: 0.9em; /* Tamaño más pequeño para móviles */
+  }
+
+  .texto-sobre-imagen h2 {
+    font-size: 0.9em; /* Tamaño más pequeño para móviles */
+  }
+
+  .texto-sobre-imagen h5 {
+    font-size: 0.7em; /* Tamaño más pequeño para móviles */
+    font-weight: bold;
+  }
+  .texto {
+    font-size: 0.7em; /* Tamaño más pequeño para móviles */
+  }
 }
 </style>
