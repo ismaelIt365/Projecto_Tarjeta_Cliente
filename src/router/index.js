@@ -5,7 +5,7 @@ const routes = [
     path: '/',
     name: 'login',
   
-    component: () => import('../components/Login.vue')
+    component: () => import('../components/Flayer/FlayerDigital.vue')
   },
   {
     path: '/politicas',

@@ -33,7 +33,7 @@
           </div>
           <img
             v-if="changecolor"
-            src="../assets/logo.png"
+            src="../../assets/logo.png"
             class="card-img-top img-fluid mx-auto"
             alt="..."
             style="width: 15rem"
@@ -42,7 +42,7 @@
             <div style="position: relative; text-align: center">
               <!-- Imagen SVG como fondo -->
               <img
-                src="../assets/Recurso7.svg"
+                src="../../assets/Recurso7.svg"
                 alt="Recurso 7"
                 style="width: 90%; height: auto"
               />
@@ -77,7 +77,7 @@
               <div class="col-12 col-md-4">
                 <button @click="enviarCorreo()" class="btn w-100">
                   <img
-                    src="../assets/Recurso8.svg"
+                    src="../../assets/Recurso8.svg"
                     alt="Recurso 7"
                     style="width: 90%; height: auto"
                   />
@@ -206,7 +206,7 @@
               <div class="col-6">
                 <img
                   class="img-thumbnail"
-                  src="../assets/bandaDeFruta.png"
+                  src="../../assets/bandaDeFruta.png"
                   alt=""
                 />
                 <div class="card-body">
@@ -217,7 +217,7 @@
               <div class="col-6">
                 <img
                   class="img-thumbnail"
-                  src="../assets/padecoca.png"
+                  src="../../assets/padecoca.png"
                   alt=""
                 />
                 <div class="card-body">
@@ -230,7 +230,7 @@
               <div class="col-6">
                 <img
                   class="img-thumbnail"
-                  src="../assets/cafeconleche.png"
+                  src="../../assets/cafeconleche.png"
                   alt=""
                 />
                 <div class="card-body">
@@ -239,7 +239,11 @@
                 </div>
               </div>
               <div class="col-6">
-                <img class="img-thumbnail" src="../assets/Joanets.jpg" alt="" />
+                <img
+                  class="img-thumbnail"
+                  src="../../assets/Joanets.jpg"
+                  alt=""
+                />
                 <div class="card-body">
                   <h5 class="card-title">Joanets</h5>
                   <p class="card-text">1000 pts</p>
@@ -432,7 +436,7 @@ export default {
       try {
         const response = await axios.post(
           //"http://localhost:3000/clientes/clientsForm",
-          "https://365equipo.cloud/clientes/clientsForm",
+          "https://api.365equipo.com/clientes/clientsForm",
           datos
         );
         console.log(response);
