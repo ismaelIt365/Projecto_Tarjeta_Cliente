@@ -1,11 +1,9 @@
 <template>
-  <div class="container">
-    <!-- para poner en el centro -->
-    <div class="row justify-content-center mt-2">
-      <div class="col-12 col-md-8 col-sm-12">
-        <div class="card">
-          <div class="row p-2">
-            <!-- cambiar de div entre registro y ventajas con @click="variable"-->
+  <!-- para poner en el centro -->
+  <div class="row justify-content-center mt-2">
+    <div class="col-12 col-md-8 col-sm-12">
+      <div class="card">
+        <!-- <div class="row p-2">
             <div class="col-6">
               <button
                 :class="{
@@ -30,74 +28,74 @@
                 Avantatges
               </button>
             </div>
-          </div>
-          <img
-            v-if="changecolor"
-            src="../../assets/logo.png"
-            class="card-img-top img-fluid mx-auto"
-            alt="..."
-            style="width: 15rem"
-          />
-          <div v-if="changecolor" class="div text-center">
-            <div style="position: relative; text-align: center">
-              <!-- Imagen SVG como fondo -->
-              <img
-                src="../../assets/Recurso7.svg"
-                alt="Recurso 7"
-                style="width: 90%; height: auto"
-              />
+          </div> -->
+        <img
+          v-if="changecolor"
+          src="../../assets/logo.png"
+          class="card-img-top img-fluid mx-auto"
+          alt="..."
+          style="width: 15rem"
+        />
+        <div v-if="changecolor" class="div text-center">
+          <div style="position: relative; text-align: center">
+            <!-- Imagen SVG como fondo -->
+            <img
+              src="../../assets/Recurso7.svg"
+              alt="Recurso 7"
+              style="width: 90%; height: auto"
+            />
 
-              <!-- Texto posicionado sobre la imagen -->
-              <div class="texto-sobre-imagen">
-                <h1>Et regalem un</h1>
-                <h2>CAFÈ O UNA BARRA DE PA</h2>
-                <h5>Inscriu-te amb el teu mail per a aconseguir-lo</h5>
-              </div>
+            <!-- Texto posicionado sobre la imagen -->
+            <div class="texto-sobre-imagen">
+              <h1>Et regalem un</h1>
+              <h2>CAFÈ O UNA BARRA DE PA</h2>
+              <h5>Inscriu-te amb el teu mail per a aconseguir-lo</h5>
             </div>
           </div>
-          <template v-if="!mostrarForm">
-            <div v-if="changecolor" class="card-body row ms-2 g-2">
-              <div class="col-12 col-md-8">
-                <div class="input-group mb-3">
-                  <span
-                    class="input-group-text border-0 texto"
-                    style="background-color: white"
-                    id="basic-addon1"
-                    >Correu electrònic:</span
-                  >
-                  <input
-                    v-model="email"
-                    type="email"
-                    class="form-control"
-                    id="inputEmail"
-                    placeholder="e-mail"
-                  />
-                </div>
-              </div>
-              <div class="col-12 col-md-4">
-                <button @click="enviarCorreo()" class="btn w-100">
-                  <img
-                    src="../../assets/Recurso8.svg"
-                    alt="Recurso 7"
-                    style="width: 90%; height: auto"
-                  />
-                </button>
+        </div>
+        <template v-if="!mostrarForm">
+          <div v-if="changecolor" class="card-body row ms-2 g-2">
+            <div class="col-12 col-md-8">
+              <div class="input-group mb-3">
+                <span
+                  class="input-group-text border-0 texto"
+                  style="background-color: white"
+                  id="basic-addon1"
+                  >Correu electrònic:</span
+                >
+                <input
+                  v-model="email"
+                  type="email"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="e-mail"
+                />
               </div>
             </div>
-          </template>
-          <div v-if="changecolor" class="mt-1 text-center">
+            <div class="col-12 col-md-4">
+              <button @click="enviarCorreo()" class="btn w-100">
+                <img
+                  src="../../assets/Recurso8.svg"
+                  alt="Recurso 7"
+                  style="width: 90%; height: auto"
+                />
+              </button>
+            </div>
+          </div>
+        </template>
+        <!-- <div v-if="changecolor" class="mt-1 text-center">
             <h5 class="texto">
               𝓕𝓸𝓻𝓶𝓪𝓻 𝓹𝓪𝓻𝓽 𝓭𝓮𝓵
               <span style="color: #e86d5a; font-weight: bold">#Club 365 </span>
               𝓽é 𝓶𝓸𝓵𝓽𝓼 𝓪𝓿𝓪𝓷𝓽𝓪𝓽𝓰𝓮𝓼
             </h5>
-          </div>
+          </div> -->
 
-          <div
-            v-if="changecolor"
-            class="d-flex flex-wrap justify-content-center p-2 mb-2"
-          >
-            <div class="form-check me-2 me-md-4 mb-2 mb-md-0">
+        <div
+          v-if="changecolor"
+          class="d-flex flex-wrap justify-content-center p-2 mb-2"
+        >
+          <!-- <div class="form-check me-2 me-md-4 mb-2 mb-md-0">
               <input
                 v-model="mostrarForm"
                 class="form-check-input"
@@ -107,19 +105,19 @@
               <label class="form-check-label texto" for="flexCheckDefault">
                 Fes-te membre del club
               </label>
-            </div>
-            <div class="form-check">
-              <input
-                v-model="newsletter"
-                class="form-check-input"
-                type="checkbox"
-                id="flexCheckNewsletter"
-              />
-              <label class="form-check-label texto" for="flexCheckNewsletter">
-                Subscriu-te a la newsletter
-              </label>
-            </div>
-            <!-- <p class="text-center mt-4 text-muted">
+            </div> -->
+          <div class="form-check">
+            <input
+              v-model="newsletter"
+              class="form-check-input"
+              type="checkbox"
+              id="flexCheckNewsletter"
+            />
+            <label class="form-check-label texto" for="flexCheckNewsletter">
+              Subscriu-te a la newsletter
+            </label>
+          </div>
+          <!-- <p class="text-center mt-4 text-muted">
               En fer ús d'aquesta app acceptes les nostres
               <router-link to="/Politicas">
                 <span class="fw-bold" style="color: #03a55a"
@@ -127,127 +125,126 @@
                 >
               </router-link>
             </p> -->
+        </div>
+        <template v-if="mostrarForm">
+          <div v-if="changecolor" class="card-body">
+            <div class="row g-3">
+              <div class="col-6">
+                <label for="inputNombre" class="form-label">Nom</label>
+                <input
+                  v-model="nombre"
+                  type="text"
+                  class="form-control"
+                  id="inputNombre"
+                  placeholder="Nom"
+                />
+              </div>
+              <div class="col-6">
+                <label for="inputApellidos" class="form-label">Cognoms</label>
+                <input
+                  v-model="apellidos"
+                  type="text"
+                  class="form-control"
+                  id="inputApellidos"
+                  placeholder="Cognoms"
+                />
+              </div>
+              <div class="col-6">
+                <label for="inputTelefono" class="form-label">Telèfon</label>
+                <div class="input-group">
+                  <span class="input-group-text" id="basic-addon1">+34</span>
+                  <input
+                    v-model="telefono"
+                    type="text"
+                    class="form-control"
+                    placeholder="Telèfon"
+                    aria-label="telefono"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="inputCP" class="form-label">Codi Postal</label>
+                <input
+                  v-model="cp"
+                  type="text"
+                  class="form-control"
+                  id="inputCP"
+                  placeholder="Codi Postal"
+                />
+              </div>
+              <div class="col-12">
+                <label for="inputEmail" class="form-label"
+                  >Correu electrònic</label
+                >
+                <input
+                  v-model="email"
+                  type="text"
+                  class="form-control"
+                  id="inputEmail"
+                  placeholder="e-mail"
+                />
+              </div>
+              <div class="col-12 text-center">
+                <button
+                  @click="crearTarjeta()"
+                  class="btn"
+                  style="background-color: #fbca8b"
+                >
+                  Unir-me al club
+                </button>
+              </div>
+            </div>
           </div>
-          <template v-if="mostrarForm">
-            <div v-if="changecolor" class="card-body">
-              <div class="row g-3">
-                <div class="col-6">
-                  <label for="inputNombre" class="form-label">Nom</label>
-                  <input
-                    v-model="nombre"
-                    type="text"
-                    class="form-control"
-                    id="inputNombre"
-                    placeholder="Nom"
-                  />
-                </div>
-                <div class="col-6">
-                  <label for="inputApellidos" class="form-label">Cognoms</label>
-                  <input
-                    v-model="apellidos"
-                    type="text"
-                    class="form-control"
-                    id="inputApellidos"
-                    placeholder="Cognoms"
-                  />
-                </div>
-                <div class="col-6">
-                  <label for="inputTelefono" class="form-label">Telèfon</label>
-                  <div class="input-group">
-                    <span class="input-group-text" id="basic-addon1">+34</span>
-                    <input
-                      v-model="telefono"
-                      type="text"
-                      class="form-control"
-                      placeholder="Telèfon"
-                      aria-label="telefono"
-                      aria-describedby="basic-addon1"
-                    />
-                  </div>
-                </div>
-                <div class="col-6">
-                  <label for="inputCP" class="form-label">Codi Postal</label>
-                  <input
-                    v-model="cp"
-                    type="text"
-                    class="form-control"
-                    id="inputCP"
-                    placeholder="Codi Postal"
-                  />
-                </div>
-                <div class="col-12">
-                  <label for="inputEmail" class="form-label"
-                    >Correu electrònic</label
-                  >
-                  <input
-                    v-model="email"
-                    type="text"
-                    class="form-control"
-                    id="inputEmail"
-                    placeholder="e-mail"
-                  />
-                </div>
-                <div class="col-12 text-center">
-                  <button
-                    @click="crearTarjeta()"
-                    class="btn"
-                    style="background-color: #fbca8b"
-                  >
-                    Unir-me al club
-                  </button>
-                </div>
-              </div>
-            </div>
-          </template>
+        </template>
 
-          <!-- ventajas -->
-          <div v-if="changecolor == false" class="card-body">
-            <div class="row">
-              <div class="col-6">
-                <img
-                  class="img-thumbnail"
-                  src="../../assets/bandaDeFruta.png"
-                  alt=""
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Banda de fruites</h5>
-                  <p class="card-text">13000 pts</p>
-                </div>
-              </div>
-              <div class="col-6">
-                <img
-                  class="img-thumbnail"
-                  src="../../assets/padecoca.png"
-                  alt=""
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Pa de coca</h5>
-                  <p class="card-text">2500 pts</p>
-                </div>
+        <!-- ventajas -->
+        <div v-if="changecolor == false" class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <img
+                class="img-thumbnail"
+                src="../../assets/bandaDeFruta.png"
+                alt=""
+              />
+              <div class="card-body">
+                <h5 class="card-title">Banda de fruites</h5>
+                <p class="card-text">13000 pts</p>
               </div>
             </div>
-            <div class="row">
-              <div class="col-6">
-                <img
-                  class="img-thumbnail"
-                  src="../../assets/cafeconleche.png"
-                  alt=""
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Cafè amb llet</h5>
-                  <p class="card-text">2335 pts</p>
-                </div>
+            <div class="col-6">
+              <img
+                class="img-thumbnail"
+                src="../../assets/padecoca.png"
+                alt=""
+              />
+              <div class="card-body">
+                <h5 class="card-title">Pa de coca</h5>
+                <p class="card-text">2500 pts</p>
               </div>
-              <div class="col-6">
-                <img
-                  class="img-thumbnail"
-                  src="../../assets/Joanets.jpg"
-                  alt=""
-                />
-                <div class="card-body">
-                  <h5 class="card-title">Joanets</h5>
-                  <p class="card-text">1000 pts</p>
-                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <img
+                class="img-thumbnail"
+                src="../../assets/cafeconleche.png"
+                alt=""
+              />
+              <div class="card-body">
+                <h5 class="card-title">Cafè amb llet</h5>
+                <p class="card-text">2335 pts</p>
+              </div>
+            </div>
+            <div class="col-6">
+              <img
+                class="img-thumbnail"
+                src="../../assets/Joanets.jpg"
+                alt=""
+              />
+              <div class="card-body">
+                <h5 class="card-title">Joanets</h5>
+                <p class="card-text">1000 pts</p>
               </div>
             </div>
           </div>
@@ -276,7 +273,7 @@ export default {
     const validEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
     const imagenQR = ref("");
     const mostrarForm = ref(false);
-    const newsletter = ref(false);
+    const newsletter = ref(true);
 
     function crearTarjeta() {
       if (mostrarForm.value) {
@@ -435,8 +432,8 @@ export default {
       console.log(datos);
       try {
         const response = await axios.post(
-          //"http://localhost:3000/clientes/clientsForm",
-          "https://api.365equipo.com/clientes/clientsForm",
+          "http://localhost:3000/clientes/clientsForm",
+          // "https://api.365equipo.com/clientes/clientsForm",
           datos
         );
         console.log(response);
