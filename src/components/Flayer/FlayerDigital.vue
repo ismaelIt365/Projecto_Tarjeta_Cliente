@@ -432,8 +432,8 @@ export default {
       console.log(datos);
       try {
         const response = await axios.post(
-          "http://localhost:3000/clientes/clientsForm",
-          // "https://api.365equipo.com/clientes/clientsForm",
+          // "http://localhost:3000/clientes/clientsForm",
+          "https://api.365equipo.com/clientes/clientsForm",
           datos
         );
         console.log(response);
@@ -455,7 +455,15 @@ export default {
           });
         }
       } catch (error) {
-        console.error(error);
+        Swal.fire({
+          icon: "error",
+          html: "<strong>Aquest correu ja ha estat utilitzat</strong>",
+          showCloseButton: true,
+          focusConfirm: false,
+          confirmButtonColor: "#FBCA9B",
+          confirmButtonText: '<i class="fa fa-thumbs-up"></i> OK',
+          confirmButtonAriaLabel: "Thumbs up, great!",
+        });
       }
     }
 
