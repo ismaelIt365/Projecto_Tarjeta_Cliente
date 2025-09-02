@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "club365obrador"
-  }
+    "club365obrador": "club365obrador-ea09e",
+    "default": "club365obrador-ea09e"
+  },
+  "targets": {},
+  "etags": {}
 }
