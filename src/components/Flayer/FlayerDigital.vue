@@ -93,7 +93,7 @@
 
         <div
           v-if="changecolor"
-          class="d-flex flex-wrap justify-content-center p-2 mb-2"
+          class="d-flex flex-column align-items-center p-4 mb-2"
         >
           <!-- <div class="form-check me-2 me-md-4 mb-2 mb-md-0">
               <input
@@ -117,15 +117,19 @@
               Subscriu-te a la newsletter
             </label>
           </div>
-          <!-- <p class="text-center mt-4 text-muted">
-              En fer ús d'aquesta app acceptes les nostres
-              <router-link to="/Politicas">
-                <span class="fw-bold" style="color: #03a55a"
-                  >polítiques de privacitat</span
-                >
-              </router-link>
-            </p> -->
+          <p class="text-center mt-4 text-muted">
+            En fer ús d'aquesta web acceptes les nostres
+            <a
+              href="https://365obrador.com/es/politica-de-privacidad/"
+              target="_blank"
+            >
+              <span class="fw-bold" style="color: #03a55a"
+                >polítiques de privacitat</span
+              >
+            </a>
+          </p>
         </div>
+
         <template v-if="mostrarForm">
           <div v-if="changecolor" class="card-body">
             <div class="row g-3">
