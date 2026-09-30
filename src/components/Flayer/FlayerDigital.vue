@@ -1,5 +1,17 @@
 <template>
-  <div class="landing-container" :lang="content.locale" :style="{ '--landing-background': content.backgroundColor, '--landing-primary': content.primaryColor, '--landing-accent': content.accentColor }">
+  <div
+    class="landing-container"
+    :class="{ 'landing-loading': promotionLoading }"
+    :lang="content.locale"
+    :style="{
+      '--landing-background': content.backgroundColor,
+      '--landing-primary': content.primaryColor,
+      '--landing-accent': content.accentColor,
+    }"
+  >
+    <p v-if="promotionError" class="promotion-load-error" role="status">
+      No es pot carregar la promoció ara. Torna-ho a intentar.
+    </p>
     <div class="content-wrapper">
       <!-- Header Section -->
       <header class="header">
@@ -15,7 +27,7 @@
               class="logo"
             />
           </div>
-          <div class="headline-container">
+          <div class="headline-container promotion-dynamic">
             <h1
               class="headline"
               :class="{ 'content-hidden': !content.showHeadline }"
@@ -34,7 +46,7 @@
             </div>
           </div>
         </div>
-        <div class="address-pill-mobile mobile-only">
+        <div class="address-pill-mobile mobile-only promotion-dynamic">
           <div
             class="address-pill"
             :class="{
@@ -47,7 +59,7 @@
       </header>
 
       <!-- Main Promotional Section -->
-      <section class="promo-section">
+      <section class="promo-section promotion-dynamic">
         <div
           class="promo-text-container"
           :class="{ 'content-hidden': !content.showPromoText }"
@@ -77,7 +89,7 @@
 
       <!-- Form Section -->
       <section class="form-section">
-        <h2 class="form-title">{{ content.formTitle }}</h2>
+        <h2 class="form-title promotion-dynamic">{{ content.formTitle }}</h2>
 
         <p v-if="inaugurationLoading" role="status">Comprovant inauguració…</p>
         <p v-else-if="inaugurationError" role="alert">
@@ -87,7 +99,7 @@
         <form
           v-if="!mostrarForm"
           @submit.prevent="enviarCorreo"
-          class="subscription-form"
+          class="subscription-form promotion-dynamic"
         >
           <div class="input-group">
             <label for="email-input" class="visually-hidden">{{
@@ -193,7 +205,7 @@
       </section>
 
       <!-- Footer Section -->
-      <footer class="footer">
+      <footer class="footer promotion-dynamic">
         <p class="footer-text">
           {{ content.privacyText }}
           <a
@@ -227,7 +239,11 @@ export default {
       "catalunya",
       process.env.VUE_APP_SERVICE_URL || "https://api.365equipo.com",
     );
-    const content = usePromotion(
+    const {
+      content,
+      loading: promotionLoading,
+      error: promotionError,
+    } = usePromotion(
       "catalunya",
       process.env.VUE_APP_SERVICE_URL || "https://api.365equipo.com",
     );
@@ -457,6 +473,8 @@ export default {
     return {
       ...inauguration,
       content,
+      promotionLoading,
+      promotionError,
       defaultLogo,
       defaultImage,
       imageFallback,
@@ -538,6 +556,23 @@ export default {
   font-style: normal;
   font-display: swap;
 }
+.promotion-dynamic {
+  transition: opacity 0.12s ease;
+}
+.landing-loading .promotion-dynamic {
+  visibility: hidden;
+}
+.promotion-load-error {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  text-align: center;
+  color: #5b4038;
+}
 </style>
 <style scoped>
 .content-hidden {
@@ -545,6 +580,7 @@ export default {
 }
 
 .landing-container {
+  position: relative;
   height: auto; /* Cambiado de min-height: 100vh para que no fuerce espacio extra */
   background-color: var(--landing-background, #ece9e3);
   font-family: "Proxima Nova", sans-serif;
