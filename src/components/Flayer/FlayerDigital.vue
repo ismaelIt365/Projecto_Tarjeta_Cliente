@@ -109,13 +109,15 @@
               id="email-input"
               type="email"
               v-model="email"
-              :placeholder="content.emailPlaceholder"
+              :placeholder="content.showEmailPlaceholder ? content.emailPlaceholder : ''"
               required
               class="email-input"
+              :class="{ 'email-input-hidden': !content.showEmailPlaceholder }"
             />
           </div>
 
           <button
+            v-if="content.showSubmitButton"
             type="submit"
             class="submit-button"
             :disabled="inaugurationLoading || !!inaugurationError"
@@ -785,6 +787,7 @@ export default {
   opacity: 0.6;
   font-size: 0.9rem;
 }
+.email-input-hidden { border-bottom: none !important; }
 
 .submit-button {
   background-color: var(--landing-primary, #ea7463);

@@ -23,6 +23,8 @@ export const promotionDefaults = {
         primaryColor: '#ea7463',
         accentColor: '#e66c5a',
         showNewsletterCheckbox: true,
+        showEmailPlaceholder: true,
+        showSubmitButton: true,
         showLogo: true,
         showHeadline: true,
         showAddress: true,
@@ -52,6 +54,8 @@ export const promotionDefaults = {
         primaryColor: '#ea7463',
         accentColor: '#e66c5a',
         showNewsletterCheckbox: true,
+        showEmailPlaceholder: true,
+        showSubmitButton: true,
         showLogo: true,
         showHeadline: true,
         showAddress: true,
@@ -73,6 +77,8 @@ export function validatePromotionContent(value, id) {
         primaryColor: defaults.primaryColor,
         accentColor: defaults.accentColor,
         showNewsletterCheckbox: defaults.showNewsletterCheckbox,
+        showEmailPlaceholder: defaults.showEmailPlaceholder,
+        showSubmitButton: defaults.showSubmitButton,
         ...value,
     };
     const keys = Object.keys(defaults);

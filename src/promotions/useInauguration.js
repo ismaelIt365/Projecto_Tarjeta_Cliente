@@ -20,9 +20,22 @@ export function useInauguration(landing, baseUrl) {
         `${baseUrl.replace(/\/$/, "")}/promotions/public/${landing}/inaugurations/${encodeURIComponent(inauguracionId)}`,
         { signal: abort.signal, timeout: 8000 },
       );
-      if (!data.available || typeof data.storeName !== "string")
+      if (typeof data.storeName !== "string") throw new Error("Unavailable");
+      const format = (value) => value.split("-").reverse().join("/");
+      const today = new Intl.DateTimeFormat("sv-SE", {
+        timeZone: "Europe/Madrid",
+      }).format(new Date());
+      if (!data.enabled) {
+        inaugurationError.value = "Aquesta inauguració està deshabilitada i no accepta registres.";
+      } else if (!data.available && typeof data.startsOn === "string" && typeof data.endsOn === "string") {
+        inaugurationError.value = today < data.startsOn
+          ? `Les inscripcions estaran disponibles del ${format(data.startsOn)} al ${format(data.endsOn)}.`
+          : `Les inscripcions van finalitzar el ${format(data.endsOn)}.`;
+      } else if (!data.available) {
         throw new Error("Unavailable");
-      inaugurationStore.value = data.storeName;
+      } else {
+        inaugurationStore.value = data.storeName;
+      }
     } catch {
       inaugurationError.value = unavailable;
     } finally {
