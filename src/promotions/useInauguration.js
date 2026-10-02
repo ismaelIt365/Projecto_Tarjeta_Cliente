@@ -35,6 +35,13 @@ export function useInauguration(landing, baseUrl) {
         throw new Error("Unavailable");
       } else {
         inaugurationStore.value = data.storeName;
+        if (typeof window.gtag === "function") {
+          window.gtag("event", "inauguration_view", {
+            landing_id: landing,
+            inauguration_id: inauguracionId,
+            store_name: data.storeName,
+          });
+        }
       }
     } catch {
       inaugurationError.value = unavailable;

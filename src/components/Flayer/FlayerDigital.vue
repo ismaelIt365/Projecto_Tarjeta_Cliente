@@ -109,6 +109,8 @@
               id="email-input"
               type="email"
               v-model="email"
+              @focus="trackFormStart"
+              @input="trackEmailEntered"
               :placeholder="content.showEmailPlaceholder ? content.emailPlaceholder : ''"
               required
               class="email-input"
@@ -261,6 +263,26 @@ export default {
     const imagenQR = ref("");
     const mostrarForm = ref(false);
     const newsletter = ref(true);
+    const formStarted = ref(false);
+    const emailEntered = ref(false);
+
+    function trackFormStart() {
+      if (formStarted.value || typeof window.gtag !== "function") return;
+      formStarted.value = true;
+      window.gtag("event", "form_start", {
+        landing_id: "catalunya",
+        inauguration_id: inauguration.inauguracionId || undefined,
+      });
+    }
+
+    function trackEmailEntered() {
+      if (emailEntered.value || !email.value.trim() || typeof window.gtag !== "function") return;
+      emailEntered.value = true;
+      window.gtag("event", "email_entered", {
+        landing_id: "catalunya",
+        inauguration_id: inauguration.inauguracionId || undefined,
+      });
+    }
 
     function crearTarjeta() {
       if (
@@ -444,6 +466,12 @@ export default {
         if (response.data.ok) {
           console.log("entra");
           vaciarForm();
+          if (typeof window.gtag === "function") {
+            window.gtag("event", "generate_lead", {
+              landing_id: "catalunya",
+              inauguration_id: inauguration.inauguracionId || undefined,
+            });
+          }
 
           //Crear una alert para mostrar que el email se ha enviado correctamente
           Swal.fire({
@@ -489,6 +517,8 @@ export default {
       email,
       imagenQR,
       enviarCorreo,
+      trackFormStart,
+      trackEmailEntered,
       vaciarForm,
       mostrarForm,
       newsletter,
