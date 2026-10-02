@@ -13,6 +13,11 @@ const routes = [
   
     component: () => import('../components/Politicas.vue')
   },
+  {
+    path: '/cookies',
+    name: 'cookies',
+    component: () => import('../components/CookiesPolicy.vue')
+  },
   
   
 ]
