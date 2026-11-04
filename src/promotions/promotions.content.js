@@ -6,10 +6,13 @@ export const promotionDefaults = {
         headlineBold: 'ZARAGOZA',
         address: 'José Luís Pomarón, 17',
         intro: 'Y PARA CELEBRARLO,\nTE REGALAMOS',
+        dateText: 'EL',
+        dateBoldText: '22 DE OCTUBRE',
         offerFirst: 'UNA BARRA DE PAN',
         offerJoin: 'O UN',
         offerSecond: 'CAFÉ',
         formTitle: 'INSCRÍBETE AQUÍ PARA CONSEGUIRLO',
+        validUntilText: 'PROMOCIÓN VÁLIDA HASTA EL 28/10/2026',
         emailPlaceholder: 'ESCRIBE TU EMAIL',
         buttonText: 'LO QUIERO',
         newsletterLabel: 'Suscríbete a la newsletter',
@@ -30,6 +33,8 @@ export const promotionDefaults = {
         showAddress: true,
         showPromoText: true,
         showPromoImage: true,
+        showDate: true,
+        showValidUntil: true,
     },
     catalunya: {
         locale: 'ca',
@@ -37,10 +42,13 @@ export const promotionDefaults = {
         headlineBold: '',
         address: '',
         intro: 'I PER CELEBRAR-HO,\nET REGALEM',
+        dateText: 'EL',
+        dateBoldText: '22 D’OCTUBRE',
         offerFirst: 'UNA BARRA DE PA',
         offerJoin: 'O UN',
         offerSecond: 'CAFÈ',
         formTitle: 'INSCRIU-TE AQUÍ PER ACONSEGUIR-LO',
+        validUntilText: 'PROMOCIÓ VÀLIDA FINS EL 28/10/2026',
         emailPlaceholder: 'ESCRIU EL TEU CORREU',
         buttonText: 'HO VULL',
         newsletterLabel: 'Subscriu-te a la newsletter',
@@ -61,6 +69,8 @@ export const promotionDefaults = {
         showAddress: true,
         showPromoText: true,
         showPromoImage: true,
+        showDate: true,
+        showValidUntil: true,
     },
 };
 export function isPromotionId(id) {
@@ -79,8 +89,23 @@ export function validatePromotionContent(value, id) {
         showNewsletterCheckbox: defaults.showNewsletterCheckbox,
         showEmailPlaceholder: defaults.showEmailPlaceholder,
         showSubmitButton: defaults.showSubmitButton,
+        showDate: defaults.showDate,
+        showValidUntil: defaults.showValidUntil,
         ...value,
     };
+    if (!Object.prototype.hasOwnProperty.call(value, 'dateBoldText') && typeof data.dateText === 'string') {
+        const legacyDateText = data.dateText;
+        const match = legacyDateText.match(/^(.*?)(?=\s*\d)/);
+        const prefix = match?.[1];
+        const matchedPrefix = match?.[0];
+        if (prefix?.trim() && matchedPrefix && matchedPrefix.length < legacyDateText.length) {
+            data.dateText = prefix.trim();
+            data.dateBoldText = legacyDateText.slice(prefix.length).trim();
+        }
+    }
+    for (const key of ['dateText', 'dateBoldText', 'validUntilText']) {
+        if (typeof data[key] !== 'string') data[key] = defaults[key];
+    }
     const keys = Object.keys(defaults);
     if (Object.keys(data).some((key) => !keys.includes(key)))
         throw new Error('Campo no permitido');

@@ -64,6 +64,16 @@
           class="promo-text-container"
           :class="{ 'content-hidden': !content.showPromoText }"
         >
+          <p
+            class="promo-date"
+            :class="{
+              'content-hidden':
+                !content.showDate || (!content.dateText.trim() && !content.dateBoldText.trim()),
+            }"
+          >
+            <span>{{ content.dateText }}</span>
+            <span class="bold date-bold-text">{{ content.dateBoldText }}</span>
+          </p>
           <p class="promo-text">
             <template
               v-for="(line, index) in content.intro.split('\n')"
@@ -90,6 +100,12 @@
       <!-- Form Section -->
       <section class="form-section">
         <h2 class="form-title promotion-dynamic">{{ content.formTitle }}</h2>
+        <p
+          class="valid-until promotion-dynamic"
+          :class="{ 'content-hidden': !content.showValidUntil || !content.validUntilText.trim() }"
+        >
+          {{ content.validUntilText }}
+        </p>
 
         <p v-if="inaugurationLoading" role="status">Comprovant inauguració…</p>
         <p v-else-if="inaugurationError" role="alert">
@@ -695,6 +711,7 @@ export default {
   font-weight: 700;
 }
 
+
 .address-pill {
   background-color: var(--landing-accent, #e66c5a);
   color: #413029;
@@ -736,6 +753,19 @@ export default {
   margin-bottom: 0.5rem;
 }
 
+.promo-date {
+  font-family: "HvDTrial Livory", serif;
+  font-size: 1.7rem;
+  line-height: 1.05;
+  font-weight: 400;
+  color: #413029;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+  overflow-wrap: anywhere;
+  transform: translateY(-1rem);
+}
+.promo-date .date-bold-text { display: block; font-weight: 700; }
+
 .promo-text {
   font-family: "HvDTrial Livory", serif;
   font-size: 1.2rem; /* Slighly smaller for mobile (from 1.4rem) */
@@ -744,6 +774,7 @@ export default {
   color: #413029;
   text-transform: uppercase;
   margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .promo-image-container {
@@ -781,6 +812,20 @@ export default {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+.valid-until {
+  font-family: "HvDTrial Livory", serif;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: #8f817b;
+  text-transform: uppercase;
+  margin: -1.4rem 0 1.25rem;
+  text-align: center;
+  overflow-wrap: anywhere;
+  width: min(100%, 40rem);
+  max-width: calc(100% - 2rem);
+  box-sizing: border-box;
+  padding-inline: 0.5rem;
 }
 
 .subscription-form {
@@ -908,9 +953,10 @@ export default {
 
   .headline {
     font-size: 3.3125rem; /* 53px */
-    white-space: nowrap;
+    white-space: normal;
     width: 31.3125rem; /* 501px */
-    height: 3.3125rem; /* 53px */
+    height: auto;
+    overflow-wrap: anywhere;
     text-align: center;
     font-weight: 400; /* Regular */
   }
@@ -924,14 +970,17 @@ export default {
     line-height: 1.3;
     margin-top: 1rem;
     width: 32.49rem; /* Increased from 32.5rem to be clearly wider than the 31rem headline */
-    height: 3.5rem;
+    min-height: 3.5rem;
+    height: auto;
     border-radius: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    padding-inline: 1rem;
     text-transform: uppercase;
   }
 
@@ -975,19 +1024,28 @@ export default {
     font-weight: 400;
     width: 34.5625rem; /* 553px */
     margin: 0;
+    transform: translateY(-5rem);
   }
+
+  .promo-date { font-size: 3rem; line-height: 1; text-align: left; transform: translateY(-6rem); }
 
   .form-title {
     font-size: 3.0625rem; /* 49px font height approx */
     width: 48.375rem !important; /* 774px */
-    height: 3.0625rem !important; /* 49px */
+    height: auto !important;
     line-height: 3.0625rem;
     margin-left: 9rem;
     margin-right: auto;
     margin-bottom: 6.75rem;
     display: block;
-    white-space: nowrap;
+    white-space: normal;
+    overflow-wrap: anywhere;
     margin-top: -1.5rem;
+  }
+
+  .valid-until { font-size: 1.15rem; margin: 0 0 0.5rem; transform: translateY(-5rem); }
+  @media (max-width: 767px) {
+    .valid-until { font-size: clamp(0.75rem, 3.5vw, 0.95rem); margin: 0 0 1.25rem; transform: none; }
   }
 
   .input-group {
@@ -1077,6 +1135,14 @@ export default {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+
+@media (max-width: 767px) {
+  .valid-until {
+    font-size: clamp(0.75rem, 3.5vw, 0.95rem);
+    margin: 0 0 1.25rem;
+    transform: none;
+  }
 }
 
 /* Fit the Catalan heading and the host Bootstrap container. */
