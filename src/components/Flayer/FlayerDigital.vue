@@ -735,6 +735,44 @@ export default {
   justify-content: center;
 }
 
+@media (max-width: 767px) {
+  .header-main-row {
+    gap: 1rem;
+    padding-inline: 0.75rem;
+    box-sizing: border-box;
+  }
+
+  .headline-container {
+    flex: 1 1 auto;
+    min-width: 0;
+    align-items: flex-start;
+    padding-left: 0.5rem;
+  }
+
+  .headline {
+    width: 100%;
+    max-width: 15rem;
+    font-size: clamp(1.6rem, 7vw, 2.0625rem);
+    line-height: 1.1;
+    white-space: normal;
+    overflow-wrap: break-word;
+  }
+
+  .address-pill-mobile .address-pill {
+    width: min(100%, calc(100vw - 2rem));
+    max-width: 100%;
+    min-height: 2.25rem;
+    height: auto;
+    box-sizing: border-box;
+    padding: 0.3rem 0.75rem;
+    font-size: clamp(1rem, 5vw, 1.5rem);
+    line-height: 1.1;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+}
+
 /* Keep the header spacing and logo position when the address is blank. */
 .address-pill:empty {
   visibility: hidden;
